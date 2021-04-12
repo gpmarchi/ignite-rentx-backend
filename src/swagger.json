@@ -15,7 +15,7 @@
           "Category"
         ],
         "summary": "Create category",
-        "description": "Creates a new category for sorting cars",
+        "description": "Creates a new category for sorting cars by category",
         "requestBody": {
           "content": {
             "application/json": {
@@ -43,6 +43,44 @@
           },
           "500": {
             "description": "Category already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "List all categories",
+        "description": "List all registered categories",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

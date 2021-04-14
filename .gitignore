@@ -127,4 +127,7 @@ dist/
 tmp/
 temp/
 
+# MacOS attributes file
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/node

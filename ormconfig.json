@@ -4,7 +4,7 @@
   "host": "localhost",
   "username": "postgres",
   "password": "postgres",
-  "database": "rentx",
+  "database": "ignite-rentx",
   "entities": [
     "./src/modules/**/entities/*.ts"
   ],

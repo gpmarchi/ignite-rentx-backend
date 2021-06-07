@@ -9,9 +9,9 @@ interface IPayload {
 
 export async function ensureAuthenticated(
   request: Request,
-  response: Response,
+  _: Response,
   next: NextFunction,
-) {
+): Promise<void> {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -34,7 +34,7 @@ export async function ensureAuthenticated(
       throw new Error('User not found.');
     }
 
-    next();
+    return next();
   } catch {
     throw new Error('Invalid token provided.');
   }

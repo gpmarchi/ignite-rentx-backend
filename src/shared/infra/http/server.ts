@@ -2,14 +2,14 @@ import express, { Request, Response, NextFunction } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import 'express-async-errors';
 
-import './database';
+import '../typeorm/database';
 
 import '@shared/container';
 
-import { AppError } from '@errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
+import swaggerConfig from '../../../swagger.json';
 import { router } from './routes';
-import swaggerConfig from './swagger.json';
 
 const app = express();
 

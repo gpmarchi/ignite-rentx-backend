@@ -1,8 +1,12 @@
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { inject, injectable } from 'tsyringe';
 
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { AppError } from '@shared/errors/AppError';
+
+dayjs.extend(utc);
 
 interface IRequest {
   user_id: string;
@@ -38,6 +42,21 @@ class CreateRentalUseCase {
 
     if (userRental) {
       throw new AppError('User already has an open rental.');
+    }
+
+    const minimumRentalPeriod = 24;
+
+    const expectedReturnDateFormat = dayjs(expected_return_date)
+      .utc()
+      .local()
+      .format();
+
+    const now = dayjs().utc().local().format();
+
+    const compare = dayjs(expectedReturnDateFormat).diff(now, 'hours');
+
+    if (compare < minimumRentalPeriod) {
+      throw new AppError('Rental period must be at least 24 hours.');
     }
 
     const rental = await this.rentalsRepository.create({

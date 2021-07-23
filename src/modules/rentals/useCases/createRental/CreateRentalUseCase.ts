@@ -11,15 +11,15 @@ interface IRequest {
   expected_return_date: Date;
 }
 
-// @injectable()
+@injectable()
 class CreateRentalUseCase {
   private rentalsRepository: IRentalsRepository;
   private dateProvider: IDateProvider;
 
   constructor(
-    // @inject('RentalsRepository')
+    @inject('RentalsRepository')
     rentalsRepository: IRentalsRepository,
-    // @inject('DateProvider')
+    @inject('DayjsDateProvider')
     dateProvider: IDateProvider,
   ) {
     this.rentalsRepository = rentalsRepository;

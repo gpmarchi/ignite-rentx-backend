@@ -61,7 +61,7 @@ describe('Create Rental', () => {
       createRentalUseCase.execute({
         user_id: '321',
         car_id: 'test',
-        expected_return_date: new Date(),
+        expected_return_date: aDayFromNow,
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

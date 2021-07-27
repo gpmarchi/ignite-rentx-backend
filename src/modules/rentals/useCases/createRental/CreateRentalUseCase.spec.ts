@@ -45,7 +45,7 @@ describe('Create Rental', () => {
       createRentalUseCase.execute({
         user_id: '12345',
         car_id: '121212',
-        expected_return_date: aDayFromNow,
+        expected_return_date: new Date(),
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -61,7 +61,7 @@ describe('Create Rental', () => {
       createRentalUseCase.execute({
         user_id: '321',
         car_id: 'test',
-        expected_return_date: aDayFromNow,
+        expected_return_date: new Date(),
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

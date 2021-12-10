@@ -18,7 +18,13 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+const options = {
+  swaggerOptions: {
+    supportedSubmitMethods: ["get"]
+   }
+};
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig, options));
 
 app.use(router);
 
